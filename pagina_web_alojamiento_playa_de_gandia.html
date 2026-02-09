@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alojamiento en la Playa de Gandía</title>
+
+  <!-- ====== ESTILOS (PUEDES MODIFICAR COLORES, TAMAÑOS, TIPOGRAFÍAS) ====== -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: url('foto-portada.jpg') center/cover no-repeat;
+      color: white;
+      padding: 60px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+    }
+
+    section {
+      padding: 40px 15px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+
+    .descripcion {
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+      font-size: 17px;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .galeria img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .info div {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      height: 280px;
+      border: 0;
+      border-radius: 12px;
+    }
+
+    form {
+      max-width: 100%;
+      margin: auto;
+      display: grid;
+      gap: 12px;
+    }
+
+    input, textarea {
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #1e293b;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 14px;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #25d366;
+      color: white;
+      padding: 14px 18px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      font-size: 15px;
+    }
+
+    @media (min-width: 768px) {
+      header h1 { font-size: 42px; }
+      .info { grid-template-columns: repeat(2, 1fr); }
+      iframe { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÓN WHATSAPP -->
+  <a class="whatsapp" href="https://wa.me/34600000000" target="_blank">💬 WhatsApp</a>
+
+  <!-- ====== PORTADA ====== -->
+  <header>
+    <h1>Tu alojamiento ideal en la Playa de Gandía</h1>
+    <p>Disfruta del mar, el sol y la comodidad</p>
+  </header>
+
+  <!-- ====== DESCRIPCIÓN ====== -->
+  <section>
+    <h2>Sobre el alojamiento</h2>
+    <p class="descripcion">
+      Apartamento luminoso y totalmente equipado, ubicado a pocos metros de la Playa de Gandía.
+      Ideal para familias, parejas o escapadas de verano. Zona tranquila, cerca de restaurantes y servicios.
+    </p>
+  </section>
+
+  <!-- ====== GALERÍA DE FOTOS ====== -->
+  <section>
+    <h2>Galería</h2>
+    <div class="galeria">
+      <!-- CAMBIA LAS FOTOS AQUÍ -->
+      <img src="foto1.jpg" alt="Salón" />
+      <img src="foto2.jpg" alt="Dormitorio" />
+      <img src="foto3.jpg" alt="Cocina" />
+      <img src="foto4.jpg" alt="Terraza" />
+      <img src="foto5.jpg" alt="Playa de Gandía" />
+    </div>
+  </section>
+
+  <!-- ====== INFORMACIÓN ====== -->
+  <section>
+    <h2>Características</h2>
+    <div class="info">
+      <div>
+        <h3>🛏 Capacidad</h3>
+        <p>Hasta 4 personas</p>
+      </div>
+      <div>
+        <h3>📍 Ubicación</h3>
+        <p>Playa de Gandía, a 3 minutos andando del mar</p>
+      </div>
+      <div>
+        <h3>🏠 Equipamiento</h3>
+        <p>Aire acondicionado, Wi‑Fi, cocina completa, terraza</p>
+      </div>
+      <div>
+        <h3>🚗 Extras</h3>
+        <p>Parking cercano y transporte público</p>
+      </div>
+    </div>
+  </section>
+
+    <!-- ====== DISPONIBILIDAD ====== -->
+  <section>
+    <h2>Disponibilidad</h2>
+    <p class="descripcion">
+      Disponibilidad orientativa. Para confirmar fechas exactas, contáctanos directamente.
+      <br /><br />
+      📅 <strong>Junio – Septiembre:</strong> Alta demanda<br />
+      📅 <strong>Resto del año:</strong> Consultar
+    </p>
+  </section>
+
+  <!-- ====== UBICACIÓN ====== -->
+  <section>
+    <h2>Ubicación</h2>
+    <iframe src="https://www.google.com/maps?q=Playa%20de%20Gandia&output=embed"></iframe>
+  </section>
+
+  <!-- ====== CONTACTO ====== -->
+  <section>
+    <h2>Contacto y reservas</h2>
+    <form>
+      <input type="text" placeholder="Nombre" required />
+      <input type="email" placeholder="Correo electrónico" required />
+      <textarea rows="5" placeholder="Mensaje"></textarea>
+      <button type="submit">Enviar consulta</button>
+    </form>
+    <p class="descripcion" style="margin-top:30px;">
+      📞 <strong>+34 600 000 000</strong><br />
+      ✉ <strong>info@tualojamiento.com</strong>
+    </p>
+  </section>
+
+  <!-- ====== PIE DE PÁGINA ====== -->
+  <footer>
+    <p>© 2026 Alojamiento en la Playa de Gandía · <a href="#">Aviso legal</a></p>
+  </footer>
+
+</body>
+</html>
