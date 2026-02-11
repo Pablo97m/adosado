@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Vacacional en Playa de Gandía | Alquiler Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            width: 100vw;
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.3)), url('image1.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #FFB5A7 0%, #FEC5BB 100%);
+            color: #2d3436;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(254, 197, 187, 0.4);
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #FCD5CE 0%, #FAE1DD 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(254, 197, 187, 0.6);
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #A8DADC;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: rgba(168, 218, 220, 0.2);
+            border: 2px solid #A8DADC;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #2d3436;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(168, 218, 220, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #FFB5A7 0%, #FEC5BB 100%);
+            border-color: #FEC5BB;
+            color: #2d3436;
+        }
+
+        /* Secciones */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-margin-top: 80px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #A8DADC, #B8E0D2);
+        }
+
+        /* Calculadora de Precios */
+        .price-calculator {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 700px;
+        }
+
+        .calculator-content {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .booking-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group h4 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .date-input {
+            background: #f7f7f7;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2c3e50;
+            border: 1px solid #e0e0e0;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .date-input:hover {
+            border-color: #A8DADC;
+            background: white;
+        }
+
+        .date-input.active {
+            border-color: #2c3e50;
+            background: white;
+        }
+
+        .date-input-arrow {
+            font-size: 0.7rem;
+            color: #999;
+        }
+
+        /* Mini Calendario Desplegable */
+        .mini-calendar {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            margin-top: 0.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        .mini-calendar.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .mini-calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .mini-calendar-nav {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #2c3e50;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .mini-calendar-nav:hover {
+            background: #f7f7f7;
+        }
+
+        .mini-calendar-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .mini-calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.2rem;
+        }
+
+        .mini-calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            padding: 0.3rem;
+            color: #717171;
+            font-size: 0.7rem;
+        }
+
+        .mini-calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c3e50;
+            background: white;
+        }
+
+        .mini-calendar-day:not(.empty):not(.other-month):not(.reserved):hover {
+            background: #A8DADC;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .mini-calendar-day.reserved {
+            opacity: 0.3;
+            text-decoration: line-through;
+            cursor: not-allowed;
+            color: #999;
+        }
+
+        .mini-calendar-day.available {
+            background: linear-gradient(135deg, #B8E0D2 0%, #95E1D3 100%);
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .mini-calendar-day.selected {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .mini-calendar-day.empty,
+        .mini-calendar-day.other-month {
+            cursor: default;
+            color: #d0d0d0;
+        }
+
+        .mini-calendar-note {
+            text-align: center;
+            padding: 0.8rem;
+            font-size: 0.75rem;
+            color: #717171;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 0.5rem;
+        }
+
+        .price-result {
+            text-align: center;
+            background: linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .price-result h3 {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .price-details {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .clear-selection {
+            background: #E74C3C;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .clear-selection:hover {
+            background: #C0392B;
+            transform: translateY(-2px);
+        }
+
+        /* Calendario Admin */
+        .calendar-wrapper {
+            max-width: 700px;
+            margin: 2rem auto 0;
+            display: none;
+        }
+
+        .calendar-wrapper.admin-active {
+            display: block;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e0e0e0;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 0 0.5rem;
+        }
+
+        .calendar-nav {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #2c3e50;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .calendar-nav:hover {
+            background: #f7f7f7;
+            border-color: #A8DADC;
+        }
+
+        .calendar-month-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.25rem;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            padding: 0.5rem 0.25rem;
+            color: #717171;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c3e50;
+            padding: 0.2rem;
+        }
+
+        .calendar-day:not(.empty):not(.other-month):hover {
+            background: #f7f7f7;
+            transform: scale(1.1);
+        }
+
+        .calendar-day.empty {
+            cursor: default;
+        }
+
+        .calendar-day.other-month {
+            color: #d0d0d0;
+            cursor: default;
+        }
+
+        .calendar-day.available {
+            background: linear-gradient(135deg, #B8E0D2 0%, #95E1D3 100%);
+        }
+
+        .calendar-day.reserved {
+            background: #E74C3C;
+            color: white;
+        }
+
+        .calendar-day.today {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .calendar-day.admin-selected {
+            background: #3498db;
+            color: white;
+        }
+
+        .day-number {
+            font-size: 0.9rem;
+        }
+
+        .day-price {
+            font-size: 0.65rem;
+            margin-top: 0.1rem;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .admin-button {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .admin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .admin-panel {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border: 2px solid #3498db;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-controls input {
+            flex: 1;
+            min-width: 150px;
+            padding: 0.8rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .admin-controls button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-set-available {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-set-reserved {
+            background: #E74C3C;
+            color: white;
+        }
+
+        .btn-set-price {
+            background: #3498db;
+            color: white;
+        }
+
+        .admin-info {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+        .admin-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .admin-actions button {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-confirm {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #E74C3C;
+            color: white;
+        }
+
+        /* Resto de estilos... */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            height: 300px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 85%;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .features {
+            background: linear-gradient(135deg, #FFD6A5 0%, #FDCAE1 50%, #C7CEEA 100%);
+            color: #2d3436;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .location {
+            background: linear-gradient(135deg, #F8F9FA 0%, #E8F5E9 50%, #E3F2FD 100%);
+            padding: 4rem 2rem;
+        }
+
+        .location-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .location-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .location-map {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .location-info ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .location-info li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1.1rem;
+        }
+
+        .contact {
+            background: linear-gradient(rgba(168, 218, 220, 0.7), rgba(184, 224, 210, 0.75)), 
+                        url('image2.jpg') center/cover fixed;
+            color: #2d3436;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .contact h2::after {
+            background: #2d3436;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%);
+            color: #2d3436;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .booking-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .price-amount {
+                font-size: 2rem;
+            }
+
+            .calendar-day {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            nav {
+                padding: 0.5rem 1rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .lang-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .calendar-container {
+                padding: 1rem;
+            }
+
+            .calendar-day {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="#inicio" class="translate nav-link" data-es="Inicio" data-en="Home">Inicio</a></li>
+                <li><a href="#galeria" class="translate nav-link" data-es="Galería" data-en="Gallery">Galería</a></li>
+                <li><a href="#caracteristicas" class="translate nav-link" data-es="Características" data-en="Features">Características</a></li>
+                <li><a href="#ubicacion" class="translate nav-link" data-es="Ubicación" data-en="Location">Ubicación</a></li>
+                <li><a href="#calendario" class="translate nav-link" data-es="Disponibilidad" data-en="Availability">Disponibilidad</a></li>
+                <li><a href="#contacto" class="translate nav-link" data-es="Contacto" data-en="Contact">Contacto</a></li>
+            </ul>
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="es">🇪🇸 ES</button>
+                <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1 class="translate" data-es="Casa de Ensueño en la Playa de Gandía" data-en="Dream House in Gandía Beach">Casa de Ensueño en la Playa de Gandía</h1>
+            <p class="translate" data-es="Tu refugio perfecto junto al mar Mediterráneo" data-en="Your perfect retreat by the Mediterranean Sea">Tu refugio perfecto junto al mar Mediterráneo</p>
+            <a href="#contacto" class="cta-button translate nav-link" data-es="Reservar Ahora" data-en="Book Now">Reservar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+            <h2 style="margin: 0;" class="translate" data-es="Galería de Fotos" data-en="Photo Gallery">Galería de Fotos</h2>
+            <a href="recorrido-fotografico.html" style="background: linear-gradient(135deg, #FFB5A7 0%, #FEC5BB 100%); color: #2d3436; padding: 0.8rem 2rem; text-decoration: none; border-radius: 50px; font-size: 1rem; font-weight: 600; box-shadow: 0 4px 15px rgba(254, 197, 187, 0.4); transition: all 0.3s ease; display: inline-block;"
+               onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(254, 197, 187, 0.6)';"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(254, 197, 187, 0.4)';">
+                <span class="translate" data-es="📸 Recorrido Fotográfico" data-en="📸 Photo Tour">📸 Recorrido Fotográfico</span>
+            </a>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item" data-index="0">
+                <img src="image3.jpg" alt="Vista principal de la casa" data-caption="Vista principal de la casa">
+            </div>
+            <div class="gallery-item" data-index="1">
+                <img src="image4.jpg" alt="Salón luminoso" data-caption="Salón luminoso">
+            </div>
+            <div class="gallery-item" data-index="2">
+                <img src="image5.jpg" alt="Dormitorio principal" data-caption="Dormitorio principal">
+            </div>
+            <div class="gallery-item" data-index="3">
+                <img src="image6.jpg" alt="Cocina moderna" data-caption="Cocina moderna">
+            </div>
+            <div class="gallery-item" data-index="4">
+                <img src="image7.jpg" alt="Terraza con vistas" data-caption="Terraza con vistas">
+            </div>
+            <div class="gallery-item" data-index="5">
+                <img src="image8.jpg" alt="Piscina" data-caption="Piscina">
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">&times;</button>
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+            <img class="lightbox-image" id="lightbox-image" src="" alt="">
+            <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+            <div class="lightbox-counter" id="lightbox-counter">1 / 6</div>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Características -->
+    <section id="caracteristicas">
+        <h2 class="translate" data-es="Características Destacadas" data-en="Featured Amenities">Características Destacadas</h2>
+        <div class="features">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏖️</div>
+                    <h3 class="translate" data-es="A 150m de la playa" data-en="150m from the beach">A 150m de la playa</h3>
+                    <p class="translate" data-es="Acceso directo a una de las mejores playas del Mediterráneo" data-en="Direct access to one of the best beaches in the Mediterranean">Acceso directo a una de las mejores playas del Mediterráneo</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛏️</div>
+                    <h3 class="translate" data-es="5 Habitaciones" data-en="5 Bedrooms">5 Habitaciones</h3>
+                    <p class="translate" data-es="Capacidad para 10 personas" data-en="Capacity for 10 people">Capacidad para 10 personas</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="translate" data-es="Pensado para familias" data-en="Designed for families">Pensado para familias</h3>
+                    <p class="translate" data-es="Facilitamos cuna, trona y otros accesorios a petición" data-en="We provide crib, high chair and other accessories upon request">Facilitamos cuna, trona y otros accesorios a petición</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏠</div>
+                    <h3 class="translate" data-es="Vivienda totalmente equipada" data-en="Fully equipped home">Vivienda totalmente equipada</h3>
+                    <p class="translate" data-es="Aire Acondicionado, Wifi, Barbacoa, Lavadora, Plancha, etc..." data-en="Air Conditioning, Wifi, BBQ, Washing machine, Iron, etc...">Aire Acondicionado, Wifi, Barbacoa, Lavadora, Plancha, etc...</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🍽️</div>
+                    <h3 class="translate" data-es="Cocina Completa" data-en="Full Kitchen">Cocina Completa</h3>
+                    <p class="translate" data-es="Perfecta para poder cocinar en casa" data-en="Perfect for cooking at home">Perfecta para poder cocinar en casa</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="translate" data-es="Proporcionando todo lo necesario" data-en="Providing everything you need">Proporcionando todo lo necesario</h3>
+                    <p class="translate" data-es="Carbón, Jabón, Detergente, Suavizante, Productos de higiene, etc..." data-en="Charcoal, Soap, Detergent, Softener, Hygiene products, etc...">Carbón, Jabón, Detergente, Suavizante, Productos de higiene, etc...</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚴</div>
+                    <h3 class="translate" data-es="Bikefriendly" data-en="Bikefriendly">Bikefriendly</h3>
+                    <p class="translate" data-es="Amplios patios donde poder dejar el equipamiento" data-en="Large patios where you can leave your equipment">Amplios patios donde poder dejar el equipamiento</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏊</div>
+                    <h3 class="translate" data-es="Piscina Comunitaria" data-en="Community Pool">Piscina Comunitaria</h3>
+                    <p class="translate" data-es="Adecuada para niños pequeños" data-en="Suitable for young children">Adecuada para niños pequeños</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🅿️</div>
+                    <h3 class="translate" data-es="Parking" data-en="Parking">Parking</h3>
+                    <p class="translate" data-es="Con posibilidad de dejar tu vehículo en el patio trasero" data-en="With the possibility of leaving your vehicle in the backyard">Con posibilidad de dejar tu vehículo en el patio trasero</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="location">
+        <h2 class="translate" data-es="Ubicación Privilegiada" data-en="Prime Location">Ubicación Privilegiada</h2>
+        <div class="location-content">
+            <div class="location-image">
+                <iframe 
+                    class="location-map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3073.4858624847767!2d-0.16668492345!3d39.0016999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5f6ca3c0e0f2b5%3A0x0!2sCarrer%20de%20la%20Rioja%2C%2015%2C%2046730%20Grau%20i%20Platja%2C%20Valencia!5e0!3m2!1ses!2ses!4v1234567890"
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div class="location-info">
+                <h3 class="translate" data-es="🏖️ En el corazón de la playa" data-en="🏖️ In the heart of the beach">🏖️ En el corazón de la playa</h3>
+                <p class="translate" 
+                   data-es="Nuestra casa está situada en una ubicación inmejorable, perfecta para disfrutar de todo lo que Gandía tiene que ofrecer." 
+                   data-en="Our house is located in an unbeatable location, perfect for enjoying everything Gandía has to offer.">
+                   Nuestra casa está situada en una ubicación inmejorable, perfecta para disfrutar de todo lo que Gandía tiene que ofrecer.
+                </p>
+                <ul>
+                    <li class="translate" data-es="📍 Situada en Calle Rioja nº15, Grau i Platja" data-en="📍 Located at Calle Rioja nº15, Grau i Platja">📍 Situada en Calle Rioja nº15, Grau i Platja</li>
+                    <li class="translate" data-es="🌊 A 150m de 1ª línea de playa" data-en="🌊 150m from beachfront">🌊 A 150m de 1ª línea de playa</li>
+                    <li class="translate" data-es="🛒 Cerca de supermercados, restaurantes y cafeterías" data-en="🛒 Near supermarkets, restaurants and cafes">🛒 Cerca de supermercados, restaurantes y cafeterías</li>
+                    <li class="translate" data-es="👨‍👩‍👧‍👦 Zona tranquila y segura" data-en="👨‍👩‍👧‍👦 Quiet and safe area">👨‍👩‍👧‍👦 Zona tranquila y segura</li>
+                    <li class="translate" data-es="🚌 Transporte público disponible" data-en="🚌 Public transport available">🚌 Transporte público disponible</li>
+                    <li class="translate" data-es="🌳 Rodeado de parques públicos" data-en="🌳 Surrounded by public parks">🌳 Rodeado de parques públicos</li>
+                    <li class="translate" data-es="⚓ A 2 minutos del puerto" data-en="⚓ 2 minutes from the port">⚓ A 2 minutos del puerto</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendario de Disponibilidad -->
+    <section id="calendario">
+        <h2 class="translate" data-es="Consulta Disponibilidad y Precios" data-en="Check Availability and Prices">Consulta Disponibilidad y Precios</h2>
+        
+        <!-- Calculadora de Precios con Mini Calendarios -->
+        <div class="price-calculator">
+            <div class="calculator-content">
+                <!-- Fechas con Mini Calendarios -->
+                <div class="booking-inputs">
+                    <div class="input-group">
+                        <h4 class="translate" data-es="Entrada" data-en="Check-in">Entrada</h4>
+                        <div class="date-input" id="checkInInput">
+                            <span id="checkInDisplay" class="translate" data-es="Seleccionar" data-en="Select" style="color: #999;">Seleccionar</span>
+                            <span class="date-input-arrow">▼</span>
+                        </div>
+                        <div class="mini-calendar" id="miniCalendarCheckIn"></div>
+                    </div>
+                    <div class="input-group">
+                        <h4 class="translate" data-es="Salida" data-en="Check-out">Salida</h4>
+                        <div class="date-input" id="checkOutInput">
+                            <span id="checkOutDisplay" class="translate" data-es="Seleccionar" data-en="Select" style="color: #999;">Seleccionar</span>
+                            <span class="date-input-arrow">▼</span>
+                        </div>
+                        <div class="mini-calendar" id="miniCalendarCheckOut"></div>
+                    </div>
+                </div>
+
+                <!-- Resultado del Precio -->
+                <div id="priceResultContainer" style="display: none;">
+                    <div class="price-result">
+                        <h3 class="translate" data-es="Precio Total" data-en="Total Price">Precio Total</h3>
+                        <div class="price-amount" id="totalPrice">0€</div>
+                        <div class="price-details" id="priceDetails"></div>
+                        <button class="clear-selection" id="clearSelection">
+                            <span class="translate" data-es="✕ Limpiar" data-en="✕ Clear">✕ Limpiar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón Admin -->
+        <div style="text-align: center; margin-top: 2rem;">
+            <button class="admin-button" id="adminBtn">
+                <span class="translate" data-es="🔒 Acceso Administrador" data-en="🔒 Admin Access">🔒 Acceso Administrador</span>
+            </button>
+        </div>
+
+        <!-- Calendario Admin (solo visible en modo admin) -->
+        <div class="calendar-wrapper" id="calendarWrapper">
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button class="calendar-nav" id="prevMonth">‹</button>
+                    <div class="calendar-month-title" id="currentMonth"></div>
+                    <button class="calendar-nav" id="nextMonth">›</button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+
+            <!-- Panel de Administración -->
+            <div class="admin-panel" id="adminPanel">
+                <div class="admin-info">
+                    <strong class="translate" data-es="Modo Administrador Activo" data-en="Admin Mode Active">Modo Administrador Activo</strong><br>
+                    <span class="translate" 
+                          data-es="Haz clic en días consecutivos para seleccionarlos. Luego usa los controles para configurar precio y disponibilidad."
+                          data-en="Click consecutive days to select them. Then use the controls to set price and availability.">
+                        Haz clic en días consecutivos para seleccionarlos. Luego usa los controles para configurar precio y disponibilidad.
+                    </span>
+                </div>
+                <div class="admin-controls">
+                    <input type="number" id="bulkPrice" placeholder="Precio por noche (€)" min="0" step="10">
+                    <button class="btn-set-price" id="btnSetPrice">
+                        <span class="translate" data-es="Aplicar Precio" data-en="Set Price">Aplicar Precio</span>
+                    </button>
+                    <button class="btn-set-available" id="btnSetAvailable">
+                        <span class="translate" data-es="✓ Disponible" data-en="✓ Available">✓ Disponible</span>
+                    </button>
+                    <button class="btn-set-reserved" id="btnSetReserved">
+                        <span class="translate" data-es="✕ Reservado" data-en="✕ Reserved">✕ Reservado</span>
+                    </button>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.85rem; color: #717171;">
+                    <span class="translate" data-es="Días seleccionados:" data-en="Selected days:">Días seleccionados:</span>
+                    <strong id="selectedCount">0</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Administración -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-content">
+            <h3 class="translate" data-es="Acceso de Administrador" data-en="Administrator Access">Acceso de Administrador</h3>
+            <input type="password" class="admin-input" id="adminPassword" placeholder="••••••••">
+            <div class="admin-actions">
+                <button class="btn-confirm" id="adminLogin"><span class="translate" data-es="Entrar" data-en="Login">Entrar</span></button>
+                <button class="btn-cancel" id="adminCancel"><span class="translate" data-es="Cancelar" data-en="Cancel">Cancelar</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact">
+        <h2 class="translate" data-es="Reserva Tu Estancia" data-en="Book Your Stay">Reserva Tu Estancia</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;" class="translate" 
+           data-es="¡No esperes más! Contacta con nosotros y asegura tus vacaciones perfectas" 
+           data-en="Don't wait any longer! Contact us and secure your perfect vacation">
+           ¡No esperes más! Contacta con nosotros y asegura tus vacaciones perfectas
+        </p>
+        <div class="contact-form">
+            <div style="text-align: center; padding: 2rem;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #2d3436;" class="translate" 
+                    data-es="Contáctanos Directamente" 
+                    data-en="Contact Us Directly">
+                    Contáctanos Directamente
+                </h3>
+                
+                <div style="margin-bottom: 2rem;">
+                    <a href="tel:+34692251034" 
+                       style="display: inline-block; background: linear-gradient(135deg, #FFB5A7 0%, #FEC5BB 100%); color: #2d3436; padding: 1.2rem 2.5rem; text-decoration: none; border-radius: 50px; font-size: 1.3rem; margin: 0.5rem; box-shadow: 0 4px 15px rgba(254, 197, 187, 0.4); transition: all 0.3s ease; font-weight: 600;"
+                       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(254, 197, 187, 0.6)';"
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(254, 197, 187, 0.4)';">
+                        📞 692 25 10 34
+                    </a>
+                </div>
+                
+                <div style="margin-top: 3rem; margin-bottom: 2rem;">
+                    <p style="font-size: 1.2rem; color: #2d3436; margin-bottom: 1.5rem; font-weight: 500;" class="translate"
+                       data-es="¿Quieres más información sobre la vivienda? Escríbenos sin compromiso."
+                       data-en="Do you want more information about the property? Contact us without obligation.">
+                        ¿Quieres más información sobre la vivienda? Escríbenos sin compromiso.
+                    </p>
+                    
+                    <a href="https://wa.me/34692251034" 
+                       target="_blank"
+                       style="display: inline-flex; align-items: center; gap: 0.8rem; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 1.2rem 2.5rem; text-decoration: none; border-radius: 50px; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: all 0.3s ease; font-weight: 600;"
+                       onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.6)';"
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(37, 211, 102, 0.4)';">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/>
+                        </svg>
+                        <span>692 25 10 34</span>
+                    </a>
+                </div>
+                
+                <p style="font-size: 1.1rem; color: #2d3436; margin-top: 2rem;" class="translate"
+                   data-es="Estamos disponibles para responder todas tus preguntas"
+                   data-en="We are available to answer all your questions">
+                    Estamos disponibles para responder todas tus preguntas
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <span class="translate" data-es="Casa Vacacional Gandía - Todos los derechos reservados" data-en="Gandía Vacation Home - All rights reserved">Casa Vacacional Gandía - Todos los derechos reservados</span></p>
+        <p>📱 692 25 10 34</p>
+    </footer>
+
+    <script>
+        // ========== SISTEMA DE TRADUCCIÓN ==========
+        let currentLang = 'es';
+
+        function translatePage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.translate').forEach(element => {
+                const translation = element.getAttribute(`data-${lang}`);
+                if (translation) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            });
+
+            if (lang === 'en') {
+                document.title = 'Vacation Home in Gandía Beach | Premium Rental';
+                document.documentElement.lang = 'en';
+            } else {
+                document.title = 'Casa Vacacional en Playa de Gandía | Alquiler Premium';
+                document.documentElement.lang = 'es';
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            renderMainCalendar();
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                translatePage(lang);
+            });
+        });
+
+        // ========== SMOOTH SCROLL ==========
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const navHeight = document.querySelector('nav').offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // ========== VARIABLES GLOBALES ==========
+        let mainMonth = new Date().getMonth();
+        let mainYear = new Date().getFullYear();
+        let miniMonthCheckIn = new Date().getMonth();
+        let miniYearCheckIn = new Date().getFullYear();
+        let miniMonthCheckOut = new Date().getMonth();
+        let miniYearCheckOut = new Date().getFullYear();
+        let reservedDates = JSON.parse(localStorage.getItem('reservedDates') || '[]');
+        let datePrices = JSON.parse(localStorage.getItem('datePrices') || '{}');
+        let isAdminMode = false;
+        let checkInDate = null;
+        let checkOutDate = null;
+        let adminSelectedDates = [];
+        const ADMIN_PASSWORD = 'gandia2026';
+        const DEFAULT_PRICE = 100;
+
+        const monthNames = {
+            es: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        };
+
+        const dayNames = {
+            es: ['L', 'M', 'X', 'J', 'V', 'S', 'D'],
+            en: ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+        };
+
+        function formatDate(dateString) {
+            const date = new Date(dateString + 'T00:00:00');
+            const day = date.getDate();
+            const month = date.getMonth();
+            return `${day} ${monthNames[currentLang][month]}`;
+        }
+
+        // ========== MINI CALENDARIOS ==========
+        function renderMiniCalendar(containerId, month, year) {
+            const container = document.getElementById(containerId);
+            let html = '<div class="mini-calendar-header">';
+            html += `<button class="mini-calendar-nav" data-container="${containerId}" data-direction="-1">‹</button>`;
+            html += `<div class="mini-calendar-title">${monthNames[currentLang][month]} ${year}</div>`;
+            html += `<button class="mini-calendar-nav" data-container="${containerId}" data-direction="1">›</button>`;
+            html += '</div><div class="mini-calendar-grid">';
+
+            // Headers
+            dayNames[currentLang].forEach(day => {
+                html += `<div class="mini-calendar-day-header">${day}</div>`;
+            });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+            // Días vacíos
+            for (let i = 0; i < adjustedFirstDay; i++) {
+                html += '<div class="mini-calendar-day empty"></div>';
+            }
+
+            // Días del mes
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                let classes = 'mini-calendar-day';
+                let isClickable = true;
+                
+                // Marcar como reservado
+                const isReserved = reservedDates.includes(dateString);
+                
+                // Para el calendario de salida, bloquear fechas
+                if (containerId === 'miniCalendarCheckOut' && checkInDate) {
+                    const checkIn = new Date(checkInDate);
+                    const currentDate = new Date(dateString);
+                    const nights = Math.floor((currentDate - checkIn) / (1000 * 60 * 60 * 24));
+                    
+                    if (currentDate <= checkIn || nights < 3) {
+                        classes += ' reserved';
+                        isClickable = false;
+                    } else {
+                        // Verificar días reservados entre medio
+                        let hasReservedInBetween = false;
+                        for (let d = new Date(checkIn); d < currentDate; d.setDate(d.getDate() + 1)) {
+                            const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                            if (reservedDates.includes(dateStr)) {
+                                hasReservedInBetween = true;
+                                break;
+                            }
+                        }
+                        if (hasReservedInBetween) {
+                            classes += ' reserved';
+                            isClickable = false;
+                        } else if (!isReserved) {
+                            classes += ' available';
+                        }
+                    }
+                } else {
+                    // Calendario de entrada
+                    if (isReserved) {
+                        classes += ' reserved';
+                        isClickable = false;
+                    } else {
+                        classes += ' available';
+                    }
+                }
+                
+                // Marcar seleccionados
+                if (containerId === 'miniCalendarCheckIn' && dateString === checkInDate) {
+                    classes += ' selected';
+                } else if (containerId === 'miniCalendarCheckOut' && dateString === checkOutDate) {
+                    classes += ' selected';
+                }
+                
+                const onClick = isClickable ? `data-date="${dateString}" data-container="${containerId}"` : '';
+                html += `<div class="${classes}" ${onClick}>${day}</div>`;
+            }
+
+            html += '</div>';
+            
+            // Nota sobre estancia mínima
+            if (containerId === 'miniCalendarCheckOut' && checkInDate) {
+                html += '<div class="mini-calendar-note">';
+                html += '<span class="translate" data-es="✨ Estancia mínima: 3 noches" data-en="✨ Minimum stay: 3 nights">✨ Estancia mínima: 3 noches</span>';
+                html += '</div>';
+            }
+            
+            container.innerHTML = html;
+            
+            // Event listeners para navegación
+            container.querySelectorAll('.mini-calendar-nav').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const direction = parseInt(btn.dataset.direction);
+                    const targetContainer = btn.dataset.container;
+                    changeMiniMonth(direction, targetContainer);
+                });
+            });
+            
+            // Event listeners para días
+            container.querySelectorAll('[data-date]').forEach(day => {
+                day.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    selectMiniDate(day.dataset.date, day.dataset.container);
+                });
+            });
+        }
+
+        function changeMiniMonth(direction, containerId) {
+            if (containerId === 'miniCalendarCheckIn') {
+                miniMonthCheckIn += direction;
+                if (miniMonthCheckIn < 0) {
+                    miniMonthCheckIn = 11;
+                    miniYearCheckIn--;
+                } else if (miniMonthCheckIn > 11) {
+                    miniMonthCheckIn = 0;
+                    miniYearCheckIn++;
+                }
+                renderMiniCalendar(containerId, miniMonthCheckIn, miniYearCheckIn);
+            } else {
+                miniMonthCheckOut += direction;
+                if (miniMonthCheckOut < 0) {
+                    miniMonthCheckOut = 11;
+                    miniYearCheckOut--;
+                } else if (miniMonthCheckOut > 11) {
+                    miniMonthCheckOut = 0;
+                    miniYearCheckOut++;
+                }
+                renderMiniCalendar(containerId, miniMonthCheckOut, miniYearCheckOut);
+            }
+        }
+
+        function selectMiniDate(dateString, containerId) {
+            if (reservedDates.includes(dateString)) {
+                alert(currentLang === 'es' ? 'Esta fecha no está disponible' : 'This date is not available');
+                return;
+            }
+
+            if (containerId === 'miniCalendarCheckIn') {
+                checkInDate = dateString;
+                document.getElementById('checkInDisplay').textContent = formatDate(dateString);
+                document.getElementById('checkInDisplay').style.color = '#2c3e50';
+                document.getElementById('miniCalendarCheckIn').classList.remove('active');
+                document.getElementById('checkInInput').classList.remove('active');
+                
+                if (checkOutDate && new Date(checkOutDate) <= new Date(checkInDate)) {
+                    checkOutDate = null;
+                    document.getElementById('checkOutDisplay').innerHTML = '<span class="translate" data-es="Seleccionar" data-en="Select" style="color: #999;">Seleccionar</span>';
+                }
+            } else {
+                if (!checkInDate) {
+                    alert(currentLang === 'es' ? 'Primero selecciona la fecha de entrada' : 'First select check-in date');
+                    return;
+                }
+                
+                const checkIn = new Date(checkInDate);
+                const checkOut = new Date(dateString);
+                
+                if (checkOut <= checkIn) {
+                    alert(currentLang === 'es' ? 'La fecha de salida debe ser posterior a la de entrada' : 'Check-out must be after check-in');
+                    return;
+                }
+                
+                const nights = Math.floor((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+                
+                if (nights < 3) {
+                    alert(currentLang === 'es' ? 'La estancia mínima es de 3 noches' : 'Minimum stay is 3 nights');
+                    return;
+                }
+                
+                let hasReservedInBetween = false;
+                for (let d = new Date(checkIn); d < checkOut; d.setDate(d.getDate() + 1)) {
+                    const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                    if (reservedDates.includes(dateStr)) {
+                        hasReservedInBetween = true;
+                        break;
+                    }
+                }
+                
+                if (hasReservedInBetween) {
+                    alert(currentLang === 'es' ? 
+                        'Hay días no disponibles en el rango seleccionado. Por favor, elige otras fechas.' : 
+                        'There are unavailable days in the selected range. Please choose different dates.');
+                    return;
+                }
+                
+                checkOutDate = dateString;
+                document.getElementById('checkOutDisplay').textContent = formatDate(dateString);
+                document.getElementById('checkOutDisplay').style.color = '#2c3e50';
+                document.getElementById('miniCalendarCheckOut').classList.remove('active');
+                document.getElementById('checkOutInput').classList.remove('active');
+                calculatePrice();
+            }
+            
+            renderMiniCalendar(containerId, 
+                containerId === 'miniCalendarCheckIn' ? miniMonthCheckIn : miniMonthCheckOut,
+                containerId === 'miniCalendarCheckIn' ? miniYearCheckIn : miniYearCheckOut
+            );
+        }
+
+        // Toggle mini calendarios
+        document.getElementById('checkInInput').addEventListener('click', () => {
+            const mini = document.getElementById('miniCalendarCheckIn');
+            const otherMini = document.getElementById('miniCalendarCheckOut');
+            otherMini.classList.remove('active');
+            document.getElementById('checkOutInput').classList.remove('active');
+            
+            if (mini.classList.contains('active')) {
+                mini.classList.remove('active');
+                document.getElementById('checkInInput').classList.remove('active');
+            } else {
+                mini.classList.add('active');
+                document.getElementById('checkInInput').classList.add('active');
+                miniMonthCheckIn = new Date().getMonth();
+                miniYearCheckIn = new Date().getFullYear();
+                renderMiniCalendar('miniCalendarCheckIn', miniMonthCheckIn, miniYearCheckIn);
+            }
+        });
+
+        document.getElementById('checkOutInput').addEventListener('click', () => {
+            const mini = document.getElementById('miniCalendarCheckOut');
+            const otherMini = document.getElementById('miniCalendarCheckIn');
+            otherMini.classList.remove('active');
+            document.getElementById('checkInInput').classList.remove('active');
+            
+            if (mini.classList.contains('active')) {
+                mini.classList.remove('active');
+                document.getElementById('checkOutInput').classList.remove('active');
+            } else {
+                mini.classList.add('active');
+                document.getElementById('checkOutInput').classList.add('active');
+                miniMonthCheckOut = new Date().getMonth();
+                miniYearCheckOut = new Date().getFullYear();
+                renderMiniCalendar('miniCalendarCheckOut', miniMonthCheckOut, miniYearCheckOut);
+            }
+        });
+
+        // Cerrar mini calendarios al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.input-group')) {
+                document.querySelectorAll('.mini-calendar').forEach(cal => cal.classList.remove('active'));
+                document.querySelectorAll('.date-input').forEach(input => input.classList.remove('active'));
+            }
+        });
+
+        // ========== CÁLCULO DE PRECIO ==========
+        function calculatePrice() {
+            const start = new Date(checkInDate);
+            const end = new Date(checkOutDate);
+            let totalPrice = 0;
+            let nights = 0;
+
+            for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+                const dateString = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                const price = datePrices[dateString] || DEFAULT_PRICE;
+                totalPrice += price;
+                nights++;
+            }
+
+            document.getElementById('totalPrice').textContent = `${totalPrice}€`;
+            const nightsText = currentLang === 'es' ? 
+                `${nights} ${nights === 1 ? 'noche' : 'noches'}` :
+                `${nights} ${nights === 1 ? 'night' : 'nights'}`;
+            document.getElementById('priceDetails').textContent = nightsText;
+            document.getElementById('priceResultContainer').style.display = 'block';
+        }
+
+        document.getElementById('clearSelection').addEventListener('click', () => {
+            checkInDate = null;
+            checkOutDate = null;
+            document.getElementById('checkInDisplay').innerHTML = '<span class="translate" data-es="Seleccionar" data-en="Select" style="color: #999;">Seleccionar</span>';
+            document.getElementById('checkOutDisplay').innerHTML = '<span class="translate" data-es="Seleccionar" data-en="Select" style="color: #999;">Seleccionar</span>';
+            document.getElementById('priceResultContainer').style.display = 'none';
+        });
+
+        // ========== CALENDARIO ADMIN ==========
+        function renderMainCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+
+            document.getElementById('currentMonth').textContent = 
+                monthNames[currentLang][mainMonth] + ' ' + mainYear;
+
+            dayNames[currentLang].forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'calendar-day-header';
+                header.textContent = day;
+                grid.appendChild(header);
+            });
+
+            const firstDay = new Date(mainYear, mainMonth, 1).getDay();
+            const daysInMonth = new Date(mainYear, mainMonth + 1, 0).getDate();
+            const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+            for (let i = 0; i < adjustedFirstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                grid.appendChild(emptyDay);
+            }
+
+            const today = new Date();
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                
+                const dateString = `${mainYear}-${String(mainMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                // Crear estructura interna
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'day-number';
+                dayNumber.textContent = day;
+                dayElement.appendChild(dayNumber);
+                
+                // Mostrar precio en modo admin
+                if (isAdminMode) {
+                    const price = datePrices[dateString] || DEFAULT_PRICE;
+                    const priceElement = document.createElement('div');
+                    priceElement.className = 'day-price';
+                    priceElement.textContent = `${price}€`;
+                    dayElement.appendChild(priceElement);
+                }
+                
+                if (today.getDate() === day && today.getMonth() === mainMonth && today.getFullYear() === mainYear) {
+                    dayElement.classList.add('today');
+                }
+
+                if (reservedDates.includes(dateString)) {
+                    dayElement.classList.add('reserved');
+                } else {
+                    dayElement.classList.add('available');
+                }
+
+                if (adminSelectedDates.includes(dateString)) {
+                    dayElement.classList.add('admin-selected');
+                }
+
+                if (isAdminMode) {
+                    dayElement.addEventListener('click', () => {
+                        const index = adminSelectedDates.indexOf(dateString);
+                        if (index > -1) {
+                            adminSelectedDates.splice(index, 1);
+                        } else {
+                            adminSelectedDates.push(dateString);
+                        }
+                        adminSelectedDates.sort();
+                        renderMainCalendar();
+                    });
+                }
+
+                grid.appendChild(dayElement);
+            }
+
+            document.getElementById('selectedCount').textContent = adminSelectedDates.length;
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            mainMonth--;
+            if (mainMonth < 0) {
+                mainMonth = 11;
+                mainYear--;
+            }
+            renderMainCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            mainMonth++;
+            if (mainMonth > 11) {
+                mainMonth = 0;
+                mainYear++;
+            }
+            renderMainCalendar();
+        });
+
+        // ========== ADMIN ==========
+        document.getElementById('adminBtn').addEventListener('click', () => {
+            if (isAdminMode) {
+                isAdminMode = false;
+                adminSelectedDates = [];
+                document.getElementById('adminPanel').classList.remove('active');
+                document.getElementById('calendarWrapper').classList.remove('admin-active');
+                document.getElementById('adminBtn').innerHTML = '<span class="translate" data-es="🔒 Acceso Administrador" data-en="🔒 Admin Access">🔒 Acceso Administrador</span>';
+            } else {
+                document.getElementById('adminModal').classList.add('active');
+                document.getElementById('adminPassword').value = '';
+            }
+        });
+
+        document.getElementById('adminCancel').addEventListener('click', () => {
+            document.getElementById('adminModal').classList.remove('active');
+        });
+
+        document.getElementById('adminLogin').addEventListener('click', () => {
+            const password = document.getElementById('adminPassword').value;
+            if (password === ADMIN_PASSWORD) {
+                isAdminMode = true;
+                document.getElementById('adminModal').classList.remove('active');
+                document.getElementById('adminPanel').classList.add('active');
+                document.getElementById('calendarWrapper').classList.add('admin-active');
+                document.getElementById('adminBtn').innerHTML = '<span class="translate" data-es="🔓 Cerrar Admin" data-en="🔓 Close Admin">🔓 Cerrar Admin</span>';
+                renderMainCalendar();
+            } else {
+                alert(currentLang === 'es' ? 'Contraseña incorrecta' : 'Incorrect password');
+            }
+        });
+
+        document.getElementById('btnSetPrice').addEventListener('click', () => {
+            const price = parseInt(document.getElementById('bulkPrice').value);
+            if (!price || price < 0) {
+                alert(currentLang === 'es' ? 'Introduce un precio válido' : 'Enter a valid price');
+                return;
+            }
+            if (adminSelectedDates.length === 0) {
+                alert(currentLang === 'es' ? 'Selecciona al menos un día' : 'Select at least one day');
+                return;
+            }
+            adminSelectedDates.forEach(date => {
+                datePrices[date] = price;
+            });
+            localStorage.setItem('datePrices', JSON.stringify(datePrices));
+            alert(currentLang === 'es' ? `Precio de ${price}€ aplicado a ${adminSelectedDates.length} días` : `Price of ${price}€ applied to ${adminSelectedDates.length} days`);
+            document.getElementById('bulkPrice').value = '';
+        });
+
+        document.getElementById('btnSetAvailable').addEventListener('click', () => {
+            if (adminSelectedDates.length === 0) {
+                alert(currentLang === 'es' ? 'Selecciona al menos un día' : 'Select at least one day');
+                return;
+            }
+            adminSelectedDates.forEach(date => {
+                const index = reservedDates.indexOf(date);
+                if (index > -1) {
+                    reservedDates.splice(index, 1);
+                }
+            });
+            localStorage.setItem('reservedDates', JSON.stringify(reservedDates));
+            adminSelectedDates = [];
+            renderMainCalendar();
+            // Actualizar mini calendarios si están abiertos
+            if (document.getElementById('miniCalendarCheckIn').classList.contains('active')) {
+                renderMiniCalendar('miniCalendarCheckIn', miniMonthCheckIn, miniYearCheckIn);
+            }
+            if (document.getElementById('miniCalendarCheckOut').classList.contains('active')) {
+                renderMiniCalendar('miniCalendarCheckOut', miniMonthCheckOut, miniYearCheckOut);
+            }
+            alert(currentLang === 'es' ? 'Días marcados como disponibles' : 'Days marked as available');
+        });
+
+        document.getElementById('btnSetReserved').addEventListener('click', () => {
+            if (adminSelectedDates.length === 0) {
+                alert(currentLang === 'es' ? 'Selecciona al menos un día' : 'Select at least one day');
+                return;
+            }
+            adminSelectedDates.forEach(date => {
+                if (!reservedDates.includes(date)) {
+                    reservedDates.push(date);
+                }
+            });
+            localStorage.setItem('reservedDates', JSON.stringify(reservedDates));
+            adminSelectedDates = [];
+            renderMainCalendar();
+            // Actualizar mini calendarios si están abiertos
+            if (document.getElementById('miniCalendarCheckIn').classList.contains('active')) {
+                renderMiniCalendar('miniCalendarCheckIn', miniMonthCheckIn, miniYearCheckIn);
+            }
+            if (document.getElementById('miniCalendarCheckOut').classList.contains('active')) {
+                renderMiniCalendar('miniCalendarCheckOut', miniMonthCheckOut, miniYearCheckOut);
+            }
+            alert(currentLang === 'es' ? 'Días marcados como reservados' : 'Days marked as reserved');
+        });
+
+        renderMainCalendar();
+
+        // ========== LIGHTBOX ==========
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        let currentImageIndex = 0;
+        const totalImages = galleryItems.length;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxImage();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightboxImage() {
+            const currentItem = galleryItems[currentImageIndex];
+            const img = currentItem.querySelector('img');
+            lightboxImage.src = img.src;
+            lightboxImage.alt = img.alt;
+            lightboxCounter.textContent = `${currentImageIndex + 1} / ${totalImages}`;
+            lightboxCaption.textContent = img.getAttribute('data-caption') || img.alt;
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+            updateLightboxImage();
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % totalImages;
+            updateLightboxImage();
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', previousImage);
+        lightboxNext.addEventListener('click', nextImage);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                previousImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightboxImage.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        lightboxImage.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextImage();
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                previousImage();
+            }
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.gallery-item, .feature-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
