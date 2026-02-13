@@ -1244,8 +1244,8 @@
             </div>
         </div>
 
-        <!-- Botón Admin -->
-        <div style="text-align: center; margin-top: 2rem;">
+         <!-- Botón Admin (oculto - activar con 10 clics en el título) -->
+        <div style="text-align: center; margin-top: 2rem; display: none;">
             <button class="admin-button" id="adminBtn">
                 <span class="translate" data-es="🔒 Acceso Administrador" data-en="🔒 Admin Access">🔒 Acceso Administrador</span>
             </button>
@@ -1438,7 +1438,7 @@ let datePrices = {}
         let checkInDate = null;
         let checkOutDate = null;
         let adminSelectedDates = [];
-        const ADMIN_PASSWORD = 'gandia2026';
+        const ADMIN_PASSWORD = 'Nanito1696977';
         const DEFAULT_PRICE = 100;
 
         const monthNames = {
@@ -1846,6 +1846,31 @@ let datePrices = {}
             }
         });
 
+        // Activar admin con 10 clics en el título de la sección
+        const calendarSection = document.getElementById('calendario');
+        if (calendarSection) {
+            const heading = calendarSection.querySelector('h2');
+            if (heading) {
+                let clickCount = 0;
+                let clickTimer = null;
+                
+                heading.addEventListener('click', () => {
+                    clickCount++;
+                    clearTimeout(clickTimer);
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                    }, 3000);
+                    
+                    if (clickCount === 10) {
+                        clickCount = 0;
+                        document.getElementById('adminModal').classList.add('active');
+                        document.getElementById('adminPassword').value = '';
+                    }
+                });
+                heading.style.cursor = 'default';
+            }
+        }
+
         document.getElementById('adminCancel').addEventListener('click', () => {
             document.getElementById('adminModal').classList.remove('active');
         });
@@ -1864,62 +1889,36 @@ let datePrices = {}
             }
         });
 
-      document.getElementById('btnSetPrice').addEventListener('click', async () => {
-
-    const price = parseInt(document.getElementById('bulkPrice').value);
-
-    if (!price || price < 0) {
-        alert(currentLang === 'es' ? 'Introduce un precio válido' : 'Enter a valid price');
-        return;
-    }
-
-    if (adminSelectedDates.length === 0) {
-        alert(currentLang === 'es' ? 'Selecciona al menos un día' : 'Select at least one day');
-        return;
-    }
-
-    for(const date of adminSelectedDates){
-        await supabaseClient
-            .from('availability')
-            .upsert([{ fecha: date, precio: price }])
-    }
-
-    alert(currentLang === 'es'
-        ? `Precio de ${price}€ aplicado a ${adminSelectedDates.length} días`
-        : `Price of ${price}€ applied to ${adminSelectedDates.length} days`
-    );
-
-    document.getElementById('bulkPrice').value = '';
-    adminSelectedDates = [];
-
-    cargarDatosDesdeSupabase();
-});
+     document.getElementById('btnSetPrice').addEventListener('click', async () => {
+            const price = parseInt(document.getElementById('bulkPrice').value);
+            if (!price || price < 0) {
+                alert(currentLang === 'es' ? 'Introduce un precio válido' : 'Enter a valid price');
+                return;
+            }
+            if (adminSelectedDates.length === 0) {
+                alert(currentLang === 'es' ? 'Selecciona al menos un día' : 'Select at least one day');
+                return;
+            }
+            for(const date of adminSelectedDates){
+                await supabaseClient.from('availability').upsert([{ fecha: date, precio: price }])
+            }
+            alert(currentLang === 'es' ? `Precio de ${price}€ aplicado a ${adminSelectedDates.length} días` : `Price of ${price}€ applied to ${adminSelectedDates.length} days`);
+            document.getElementById('bulkPrice').value = '';
+            adminSelectedDates = [];
+            await cargarDatosDesdeSupabase();
+        });
 
 
        document.getElementById('btnSetAvailable').addEventListener('click', async () => {
-
-  if (adminSelectedDates.length === 0) return;
-
-  for(const date of adminSelectedDates){
-    await supabaseClient
-      .from('availability')
-      .upsert([{ fecha: date, disponible: true }])
-  }
-
-  adminSelectedDates = []
-  cargarDatosDesdeSupabase()
-});
-
-            localStorage.setItem('reservedDates', JSON.stringify(reservedDates));
+            if (adminSelectedDates.length === 0) {
+                alert(currentLang === 'es' ? 'Selecciona al menos un día' : 'Select at least one day');
+                return;
+            }
+            for(const date of adminSelectedDates){
+                await supabaseClient.from('availability').upsert([{ fecha: date, disponible: true }])
+            }
             adminSelectedDates = [];
-            renderMainCalendar();
-            // Actualizar mini calendarios si están abiertos
-            if (document.getElementById('miniCalendarCheckIn').classList.contains('active')) {
-                renderMiniCalendar('miniCalendarCheckIn', miniMonthCheckIn, miniYearCheckIn);
-            }
-            if (document.getElementById('miniCalendarCheckOut').classList.contains('active')) {
-                renderMiniCalendar('miniCalendarCheckOut', miniMonthCheckOut, miniYearCheckOut);
-            }
+            await cargarDatosDesdeSupabase();
             alert(currentLang === 'es' ? 'Días marcados como disponibles' : 'Days marked as available');
         });
 
@@ -2061,40 +2060,39 @@ let datePrices = {}
             observer.observe(el);
         });
 
-async function cargarDatosDesdeSupabase(){
-
-  const { data, error } = await supabaseClient
-    .from('availability')
-    .select('*')
-
-  if(error){
-    console.log(error)
-    return
-  }
-
-  reservedDates = []
-  datePrices = {}
-
-  data.forEach(d=>{
-    if(!d.disponible){
-      reservedDates.push(d.fecha)
-    }
-    if(d.precio){
-      datePrices[d.fecha] = d.precio
-    }
-  })
-
-  cargarDatosDesdeSupabase();
+  async function cargarDatosDesdeSupabase(){
+            const { data, error } = await supabaseClient.from('availability').select('*')
+            if(error){
+                console.log('Error:', error)
+                return
+            }
+            reservedDates = []
+            datePrices = {}
+            if (data) {
+                data.forEach(d => {
+                    if(!d.disponible) reservedDates.push(d.fecha)
+                    if(d.precio) datePrices[d.fecha] = d.precio
+                })
+            }
+            renderMainCalendar();
+            if (document.getElementById('miniCalendarCheckIn').classList.contains('active')) {
+                renderMiniCalendar('miniCalendarCheckIn', miniMonthCheckIn, miniYearCheckIn);
+            }
+            if (document.getElementById('miniCalendarCheckOut').classList.contains('active')) {
+                renderMiniCalendar('miniCalendarCheckOut', miniMonthCheckOut, miniYearCheckOut);
+            }
+        }
 
 }
 
     </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
-<script>
-const supabaseUrl = "TU_URL"
-const supabaseKey = "TU_ANON_KEY"
-const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey)
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "TU_URL"
+        const supabaseKey = "TU_ANON_KEY"
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey)
+        cargarDatosDesdeSupabase();
+    </script>
 </body>
 </html>
