@@ -1394,9 +1394,10 @@
     </section>
 
     <!-- Modal de Administración -->
-    <div class="admin-modal" id="adminModal">
+   <div class="admin-modal" id="adminModal">
         <div class="admin-content">
             <h3 class="translate" data-es="Acceso de Administrador" data-en="Administrator Access">Acceso de Administrador</h3>
+            <input type="email" class="admin-input" id="adminEmail" placeholder="Email" style="margin-bottom: 1rem;">
             <input type="password" class="admin-input" id="adminPassword" placeholder="••••••••">
             <div class="admin-actions">
                 <button class="btn-confirm" id="adminLogin"><span class="translate" data-es="Entrar" data-en="Login">Entrar</span></button>
@@ -1553,7 +1554,6 @@
         let checkInDate = null;
         let checkOutDate = null;
         let adminSelectedDates = [];
-        const ADMIN_PASSWORD = 'gandia2026';
         const DEFAULT_PRICE = 100;
         const API_URL = 'calendar_api.php'; // Cambiar por tu URL del servidor
 
@@ -2046,18 +2046,29 @@
             document.getElementById('adminModal').classList.remove('active');
         });
 
-        document.getElementById('adminLogin').addEventListener('click', () => {
+        document.getElementById('adminLogin').addEventListener('click', async () => {
+            const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASSWORD) {
-                isAdminMode = true;
-                document.getElementById('adminModal').classList.remove('active');
-                document.getElementById('adminPanel').classList.add('active');
-                document.getElementById('calendarWrapper').classList.add('admin-active');
-                document.getElementById('adminBtn').innerHTML = '<span class="translate" data-es="🔓 Cerrar Admin" data-en="🔓 Close Admin">🔓 Cerrar Admin</span>';
-                renderMainCalendar();
-            } else {
-                alert(currentLang === 'es' ? 'Contraseña incorrecta' : 'Incorrect password');
+            
+            // Intentar autenticar con Supabase
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+            
+            if (error) {
+                alert(currentLang === 'es' ? 'Credenciales incorrectas' : 'Incorrect credentials');
+                console.error('Error de autenticación:', error);
+                return;
             }
+            
+            // Autenticación exitosa
+            isAdminMode = true;
+            document.getElementById('adminModal').classList.remove('active');
+            document.getElementById('adminPanel').classList.add('active');
+            document.getElementById('calendarWrapper').classList.add('admin-active');
+            document.getElementById('adminBtn').innerHTML = '<span class="translate" data-es="🔓 Cerrar Admin" data-en="🔓 Close Admin">🔓 Cerrar Admin</span>';
+            renderMainCalendar();
         });
 
            document.getElementById('btnSetPrice').addEventListener('click', async () => {
