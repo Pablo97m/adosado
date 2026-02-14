@@ -1773,10 +1773,10 @@
                 document.getElementById('miniCalendarCheckIn').classList.remove('active');
                 document.getElementById('checkInInput').classList.remove('active');
                 
-                if (checkOutDate && new Date(checkOutDate) <= new Date(checkInDate)) {
-                    checkOutDate = null;
-                    document.getElementById('checkOutDisplay').innerHTML = '<span class="translate" data-es="Seleccionar" data-en="Select" style="color: #999;">Seleccionar</span>';
-                }
+                // SIEMPRE resetear checkout al cambiar check-in
+                checkOutDate = null;
+                document.getElementById('checkOutDisplay').innerHTML = '<span class="translate" data-es="Seleccionar" data-en="Select" style="color: #999;">Seleccionar</span>';
+                document.getElementById('priceResultContainer').style.display = 'none';
             } else {
                 if (!checkInDate) {
                     alert(currentLang === 'es' ? 'Primero selecciona la fecha de entrada' : 'First select check-in date');
@@ -1829,11 +1829,14 @@
         }
 
         // Toggle mini calendarios
-        document.getElementById('checkInInput').addEventListener('click', () => {
+       document.getElementById('checkInInput').addEventListener('click', () => {
             const mini = document.getElementById('miniCalendarCheckIn');
             const otherMini = document.getElementById('miniCalendarCheckOut');
             otherMini.classList.remove('active');
             document.getElementById('checkOutInput').classList.remove('active');
+            
+            // Ocultar precio cuando se cambia la fecha
+            document.getElementById('priceResultContainer').style.display = 'none';
             
             if (mini.classList.contains('active')) {
                 mini.classList.remove('active');
