@@ -311,7 +311,28 @@
         .photo-item:hover .photo-overlay {
             opacity: 1;
         }
+.photo-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
 
+        .video-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .photo-item:hover video {
+            transform: scale(1.08);
+        }
         .photo-item img {
             width: 100%;
             height: 100%;
@@ -718,9 +739,10 @@
         <!-- FOTOS ADICIONALES -->
         <div class="gallery-section">
             <div class="section-header">
+               <div class="section-header">
                 <h2 class="translate" data-es="Galería Adicional" data-en="Additional Gallery">Galería Adicional</h2>
                 <div class="section-divider"></div>
-                <p class="photo-count translate" data-es="20 fotografías" data-en="20 photographs">20 fotografías</p>
+                <p class="photo-count translate" data-es="30 elementos (27 fotos + 3 videos)" data-en="30 items (27 photos + 3 videos)">30 elementos (27 fotos + 3 videos)</p>
             </div>
             <div class="section-content">
                 <div class="description-wrapper">
@@ -809,8 +831,11 @@
             { id: 'patios-grid', count: 6, prefix: 'patio' },
             { id: 'banos-grid', count: 3, prefix: 'bano' },
             { id: 'piscina-grid', count: 2, prefix: 'piscina' },
-            { id: 'adicionales-grid', count: 20, prefix: 'adicional' }
+            { id: 'adicionales-grid', count: 30, prefix: 'adicional' }
         ];
+
+        // Definir cuáles son videos
+        const videosAdicionales = [8, 17, 19];
 
         const allPhotos = [];
         let currentPhotoIndex = 0;
@@ -824,22 +849,43 @@
                 const photoIndex = allPhotos.length;
                 photoItem.dataset.index = photoIndex;
                 
-                // Usar imágenes reales
-                photoItem.innerHTML = `
-                    <img src="${section.prefix}_${i}.jpg" alt="${section.prefix} ${i}" loading="lazy">
-                    <div class="photo-overlay">
-                        <div class="photo-overlay-text">VER IMAGEN</div>
-                    </div>
-                `;
+                // Verificar si es video (solo para adicionales)
+                const esVideo = section.prefix === 'adicional' && videosAdicionales.includes(i);
+                
+                if (esVideo) {
+                    // Es un video
+                    photoItem.innerHTML = `
+                        <video src="${section.prefix}_${i}.mp4" preload="metadata" muted playsinline loading="lazy">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+                        <div class="video-icon">▶</div>
+                        <div class="photo-overlay">
+                            <div class="photo-overlay-text">VER VIDEO</div>
+                        </div>
+                    `;
+                    
+                    allPhotos.push({
+                        src: `${section.prefix}_${i}.mp4`,
+                        alt: `${section.prefix} ${i}`,
+                        isVideo: true
+                    });
+                } else {
+                    // Es una imagen
+                    photoItem.innerHTML = `
+                        <img src="${section.prefix}_${i}.jpg" alt="${section.prefix} ${i}" loading="lazy">
+                        <div class="photo-overlay">
+                            <div class="photo-overlay-text">VER IMAGEN</div>
+                        </div>
+                    `;
+                    
+                    allPhotos.push({
+                        src: `${section.prefix}_${i}.jpg`,
+                        alt: `${section.prefix} ${i}`,
+                        isVideo: false
+                    });
+                }
                 
                 photoItem.addEventListener('click', () => openLightbox(photoIndex));
-                
-                allPhotos.push({
-                    src: `${section.prefix}_${i}.jpg`,
-                    alt: `${section.prefix} ${i}`,
-                    placeholder: false
-                });
-                
                 grid.appendChild(photoItem);
             }
         });
@@ -863,15 +909,50 @@
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Pausar video si está reproduciéndose
+            const videoElement = document.getElementById('lightbox-video');
+            if (videoElement) {
+                videoElement.pause();
+            }
         }
 
-        function updateLightboxImage() {
+       function updateLightboxImage() {
             const photo = allPhotos[currentPhotoIndex];
+            const lightboxContent = document.querySelector('.lightbox-content');
             
-            lightboxImage.style.display = 'block';
-            lightboxImage.src = photo.src;
-            lightboxImage.alt = photo.alt;
-            lightboxCaption.textContent = photo.alt;
+            if (photo.isVideo) {
+                // Es un video
+                lightboxImage.style.display = 'none';
+                
+                // Crear elemento de video si no existe
+                let videoElement = document.getElementById('lightbox-video');
+                if (!videoElement) {
+                    videoElement = document.createElement('video');
+                    videoElement.id = 'lightbox-video';
+                    videoElement.className = 'lightbox-image';
+                    videoElement.controls = true;
+                    videoElement.autoplay = true;
+                    videoElement.loop = true;
+                    lightboxContent.insertBefore(videoElement, lightboxContent.firstChild);
+                }
+                
+                videoElement.style.display = 'block';
+                videoElement.src = photo.src;
+                lightboxCaption.textContent = photo.alt + ' (Video)';
+            } else {
+                // Es una imagen
+                const videoElement = document.getElementById('lightbox-video');
+                if (videoElement) {
+                    videoElement.style.display = 'none';
+                    videoElement.pause();
+                }
+                
+                lightboxImage.style.display = 'block';
+                lightboxImage.src = photo.src;
+                lightboxImage.alt = photo.alt;
+                lightboxCaption.textContent = photo.alt;
+            }
             
             lightboxCounter.textContent = `${currentPhotoIndex + 1} / ${allPhotos.length}`;
         }
