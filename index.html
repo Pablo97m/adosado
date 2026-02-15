@@ -1074,19 +1074,26 @@
             }
 
             /* Flecha más grande en móvil */
-            #proporcionamosArrow {
-                font-size: 2.5rem !important;
-                min-width: 2.5rem !important;
-                display: inline-block !important;
+            /* Ajustes para ¿Qué Proporcionamos? en móvil */
+            div[onclick="toggleProporcionamos()"] {
+                padding: 1rem !important;
+                grid-template-columns: 1fr 35px !important;
+                gap: 0.5rem !important;
             }
-            /* TEMPORAL - PRUEBA */
-#proporcionamosArrow {
-    background: yellow !important;
-    color: black !important;
-    font-size: 3rem !important;
-    padding: 0.5rem !important;
-    border: 2px solid red !important;
-}
+            
+            div[onclick="toggleProporcionamos()"] h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            div[onclick="toggleProporcionamos()"] div {
+                width: 35px !important;
+                height: 35px !important;
+            }
+            
+            #proporcionamosArrow {
+                font-size: 1.8rem !important;
+            }
+         
             .cta-button {
                 padding: 0.8rem 2rem;
                 font-size: 1rem;
@@ -1267,11 +1274,43 @@
         </div>
 
         <!-- Qué Proporcionamos -->
-        <div style="max-width: 1000px; margin: 4rem auto 0; padding: 0 2rem;">
+        <div style="max-width: 1000px; margin: 4rem auto 0; padding: 0 1rem;">
             <div style="background: white; border-radius: 15px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);">
-                <div onclick="toggleProporcionamos()" style="background: linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%); padding: 1.5rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; gap: 1.5rem; border-radius: 15px 15px 0 0;" onmouseover="this.style.background='linear-gradient(135deg, #97cfd1 0%, #a7d9c1 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%)'">
-                    <h3 class="translate" data-es="¿Qué Proporcionamos?" data-en="What We Provide?" style="color: white; font-size: 1.8rem; font-weight: 600; margin: 0; letter-spacing: 0.5px; word-break: keep-all; flex: 1;">¿Qué Proporcionamos?</h3>
-                    <span id="proporcionamosArrow" style="color: white; font-size: 2.5rem; transition: transform 0.3s ease; min-width: 2.5rem; text-align: center; flex-shrink: 0; display: inline-block; line-height: 1; vertical-align: middle;">▼</span>
+                <div onclick="toggleProporcionamos()" 
+                     style="background: linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%); 
+                            padding: 1.2rem 1.5rem; 
+                            cursor: pointer; 
+                            display: grid; 
+                            grid-template-columns: 1fr 40px; 
+                            gap: 0.8rem; 
+                            align-items: center; 
+                            border-radius: 15px 15px 0 0; 
+                            transition: all 0.3s ease;" 
+                     onmouseover="this.style.background='linear-gradient(135deg, #97cfd1 0%, #a7d9c1 100%)'" 
+                     onmouseout="this.style.background='linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%)'">
+                    
+                    <h3 class="translate" 
+                        data-es="¿Qué Proporcionamos?" 
+                        data-en="What We Provide?" 
+                        style="color: white; 
+                               font-size: 1.5rem; 
+                               font-weight: 600; 
+                               margin: 0; 
+                               letter-spacing: 0.3px; 
+                               line-height: 1.3;">
+                        ¿Qué Proporcionamos?
+                    </h3>
+                    
+                    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <span id="proporcionamosArrow" 
+                              style="color: white; 
+                                     font-size: 2rem; 
+                                     display: block; 
+                                     line-height: 1; 
+                                     transition: transform 0.3s ease;">
+                            ▼
+                        </span>
+                    </div>
                 </div>
                 <div id="proporcionamosContent" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
                     <div style="padding: 2rem 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
