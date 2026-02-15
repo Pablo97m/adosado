@@ -992,7 +992,16 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
+/* Botones de contacto centrados */
+            .contact-form > div {
+                text-align: center !important;
+            }
 
+            .contact-form a {
+                min-width: 200px !important;
+                max-width: 90% !important;
+                margin: 0.5rem auto !important;
+            }
             .hero p {
                 font-size: 1.2rem;
             }
@@ -1052,7 +1061,23 @@
             .hero h1 {
                 font-size: 2rem;
             }
+/* Botones más pequeños en móviles muy pequeños */
+            .contact-form a {
+                font-size: 0.95rem !important;
+                padding: 0.9rem 1.5rem !important;
+                min-width: 180px !important;
+            }
 
+            .contact-form svg {
+                width: 20px !important;
+                height: 20px !important;
+            }
+
+            /* Flecha más grande en móvil */
+            #proporcionamosArrow {
+                font-size: 2rem !important;
+                min-width: 2rem !important;
+            }
             .cta-button {
                 padding: 0.8rem 2rem;
                 font-size: 1rem;
@@ -1235,9 +1260,9 @@
         <!-- Qué Proporcionamos -->
         <div style="max-width: 1000px; margin: 4rem auto 0; padding: 0 2rem;">
             <div style="background: white; border-radius: 15px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); overflow: hidden;">
-                <div onclick="toggleProporcionamos()" style="background: linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%); padding: 1.5rem 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; gap: 1rem;" onmouseover="this.style.background='linear-gradient(135deg, #97cfd1 0%, #a7d9c1 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%)'">
-                    <h3 class="translate" data-es="¿Qué Proporcionamos?" data-en="What We Provide?" style="color: white; font-size: 1.8rem; font-weight: 600; margin: 0; letter-spacing: 0.5px; padding-right: 3rem; word-break: keep-all;">¿Qué Proporcionamos?</h3>
-                    <span id="proporcionamosArrow" style="color: white; font-size: 2rem; transition: transform 0.3s ease; min-width: 2rem; text-align: center; flex-shrink: 0;">▼</span>
+                <div onclick="toggleProporcionamos()" style="background: linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%); padding: 1.5rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; gap: 1.5rem;" onmouseover="this.style.background='linear-gradient(135deg, #97cfd1 0%, #a7d9c1 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%)'">
+                    <h3 class="translate" data-es="¿Qué Proporcionamos?" data-en="What We Provide?" style="color: white; font-size: 1.8rem; font-weight: 600; margin: 0; letter-spacing: 0.5px; word-break: keep-all; flex: 1;">¿Qué Proporcionamos?</h3>
+                    <span id="proporcionamosArrow" style="color: white; font-size: 2.5rem; transition: transform 0.3s ease; min-width: 2.5rem; text-align: center; flex-shrink: 0; display: block; line-height: 1;">▼</span>
                 </div>
                 <div id="proporcionamosContent" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
                     <div style="padding: 2rem 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
@@ -1484,28 +1509,28 @@
                     Contáctanos Directamente
                 </h3>
                 
-                <div style="margin-bottom: 2rem;">
-                   <a href="tel:+34692251034" 
-                       style="display: inline-block; background: linear-gradient(135deg, #FFB5A7 0%, #FEC5BB 100%); color: #2d3436; padding: 1.2rem 2.5rem; text-decoration: none; border-radius: 50px; font-size: 1.3rem; margin: 0.5rem; box-shadow: 0 4px 15px rgba(254, 197, 187, 0.4); transition: all 0.3s ease; font-weight: 600; white-space: nowrap;"
+                <div style="margin-bottom: 2rem; text-align: center;">
+                    <a href="tel:+34692251034" 
+                       style="display: inline-block; background: linear-gradient(135deg, #FFB5A7 0%, #FEC5BB 100%); color: #2d3436; padding: 1rem 2rem; text-decoration: none; border-radius: 50px; font-size: 1.1rem; margin: 0 auto; box-shadow: 0 4px 15px rgba(254, 197, 187, 0.4); transition: all 0.3s ease; font-weight: 600; white-space: nowrap; min-width: 250px; text-align: center;"
                        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(254, 197, 187, 0.6)';"
                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(254, 197, 187, 0.4)';">
                         📞&nbsp;+34&nbsp;692&nbsp;25&nbsp;10&nbsp;34
                     </a>
                 </div>
                 
-                <div style="margin-top: 3rem; margin-bottom: 2rem;">
+                <div style="margin-top: 3rem; margin-bottom: 2rem; text-align: center;">
                     <p style="font-size: 1.2rem; color: #2d3436; margin-bottom: 1.5rem; font-weight: 500;" class="translate"
                        data-es="¿Quieres más información sobre la vivienda? Escríbenos sin compromiso."
                        data-en="Do you want more information about the property? Contact us without obligation.">
                         ¿Quieres más información sobre la vivienda? Escríbenos sin compromiso.
                     </p>
                     
-                   <a href="https://wa.me/34692251034" 
+                    <a href="https://wa.me/34692251034" 
                        target="_blank"
-                       style="display: inline-flex; align-items: center; gap: 0.8rem; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 1.2rem 2.5rem; text-decoration: none; border-radius: 50px; font-size: 1.3rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: all 0.3s ease; font-weight: 600; white-space: nowrap; flex-wrap: nowrap;"
+                       style="display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 1rem 1.8rem; text-decoration: none; border-radius: 50px; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: all 0.3s ease; font-weight: 600; white-space: nowrap; flex-wrap: nowrap; min-width: 250px;"
                        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.6)';"
                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(37, 211, 102, 0.4)';">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/>
                         </svg>
                         <span style="white-space: nowrap;">+34&nbsp;692&nbsp;25&nbsp;10&nbsp;34</span>
