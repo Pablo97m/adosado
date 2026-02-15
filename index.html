@@ -928,6 +928,11 @@
             padding: 2rem;
         }
 
+        footer p {
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -1039,9 +1044,34 @@
             .calendar-container {
                 padding: 1rem;
             }
-
-            .calendar-day {
+.calendar-day {
                 font-size: 0.75rem;
+            }
+
+            /* Ajustes para ¿Qué Proporcionamos? en móvil */
+            footer p {
+                font-size: 0.9rem;
+                white-space: nowrap !important;
+                overflow-x: auto;
+            }
+        }
+
+        /* Media query adicional para móviles muy pequeños */
+        @media (max-width: 380px) {
+            .proporcionamos-header h3 {
+                font-size: 1.3rem !important;
+            }
+
+            .proporcionamos-header {
+                padding: 1rem 0.75rem !important;
+            }
+
+            .proporcionamos-content {
+                padding: 1.5rem 1rem !important;
+            }
+
+            .proporcionamos-item {
+                font-size: 0.9rem !important;
             }
         }
     </style>
@@ -1174,12 +1204,12 @@
         <!-- Qué Proporcionamos -->
         <div style="max-width: 1000px; margin: 4rem auto 0; padding: 0 2rem;">
             <div style="background: white; border-radius: 15px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); overflow: hidden;">
-                <div onclick="toggleProporcionamos()" style="background: linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%); padding: 2rem 2.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease;" onmouseover="this.style.background='linear-gradient(135deg, #97cfd1 0%, #a7d9c1 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%)'">
-                    <h3 class="translate" data-es="¿Qué Proporcionamos?" data-en="What We Provide?" style="color: white; font-size: 1.8rem; font-weight: 600; margin: 0; letter-spacing: 0.5px;">¿Qué Proporcionamos?</h3>
+                <div onclick="toggleProporcionamos()" style="background: linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%); padding: 1.5rem 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; gap: 1rem;" onmouseover="this.style.background='linear-gradient(135deg, #97cfd1 0%, #a7d9c1 100%)'" onmouseout="this.style.background='linear-gradient(135deg, #A8DADC 0%, #B8E0D2 100%)'">
+                    <h3 class="translate" data-es="¿Qué Proporcionamos?" data-en="What We Provide?" style="color: white; font-size: 1.8rem; font-weight: 600; margin: 0; letter-spacing: 0.5px; padding-right: 3rem; word-break: keep-all;">¿Qué Proporcionamos?</h3>
                     <span id="proporcionamosArrow" style="color: white; font-size: 2rem; transition: transform 0.3s ease;">▼</span>
                 </div>
                 <div id="proporcionamosContent" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-                    <div style="padding: 3rem 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem;">
+                    <div style="padding: 2rem 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
                         <!-- Comodidades -->
                         <div>
                             <h4 class="translate" data-es="Comodidades" data-en="Amenities" style="color: #2c3e50; font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 700; border-bottom: 3px solid #A8DADC; padding-bottom: 0.5rem;">Comodidades</h4>
@@ -1205,7 +1235,9 @@
                                 <li class="translate" data-es="Bañera para bebés (a petición)" data-en="Baby bathtub (upon request)" style="padding: 0.5rem 0; color: #555; position: relative; padding-left: 1.8rem; font-size: 1rem;">
                                     <span style="position: absolute; left: 0; color: #A8DADC; font-weight: bold; font-size: 1.2rem;">✓</span> Bañera para bebés (a petición)
                                 </li>
-                                <li class="translate" data-es="Hojas de información (Estancias y restaurantes)" data-en="Information sheets (Stays and restaurants)" style="padding: 0.5rem 0; color: #555; position: relative; padding-left: 1.8rem; font-size: 1rem;">
+                               <li class="translate" data-es="Hojas de información (Estancias y restaurantes)" data-en="Information sheets (Stays and restaurants)" style="padding: 0.5rem 0; color: #555; position: relative; padding-left: 1.8rem; font-size: 0.95rem; word-wrap: break-word; overflow-wrap: break-word; hyphens: auto;">
+                                    <span style="position: absolute; left: 0; color: #A8DADC; font-weight: bold; font-size: 1.2rem;">✓</span> Hojas de información (Estancias y restaurantes)
+                                </li>
                                     <span style="position: absolute; left: 0; color: #A8DADC; font-weight: bold; font-size: 1.2rem;">✓</span> Hojas de información (Estancias y restaurantes)
                                 </li>
                             </ul>
