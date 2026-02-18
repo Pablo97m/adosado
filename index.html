@@ -1799,7 +1799,7 @@
                     const currentDate = new Date(dateString);
                     const nights = Math.floor((currentDate - checkIn) / (1000 * 60 * 60 * 24));
                     
-                    if (currentDate <= checkIn || nights < 3) {
+                    if (currentDate <= checkIn || nights < 2) {
                         classes += ' reserved';
                         isClickable = false;
                     } else {
@@ -1845,7 +1845,7 @@
             // Nota sobre estancia mínima
             if (containerId === 'miniCalendarCheckOut' && checkInDate) {
                 html += '<div class="mini-calendar-note">';
-                html += '<span class="translate" data-es="✨ Estancia mínima: 3 noches" data-en="✨ Minimum stay: 3 nights">✨ Estancia mínima: 3 noches</span>';
+                html += '<span class="translate" data-es="✨ Estancia mínima: 2 noches" data-en="✨ Minimum stay: 2 nights">✨ Estancia mínima: 2 noches</span>';
                 html += '</div>';
             }
             
@@ -1927,8 +1927,8 @@
                 
                 const nights = Math.floor((checkOut - checkIn) / (1000 * 60 * 60 * 24));
                 
-                if (nights < 3) {
-                    alert(currentLang === 'es' ? 'La estancia mínima es de 3 noches' : 'Minimum stay is 3 nights');
+                if (nights < 2) {
+                    alert(currentLang === 'es' ? 'La estancia mínima es de 2 noches' : 'Minimum stay is 2 nights');
                     return;
                 }
                 
